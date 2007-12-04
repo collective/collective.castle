@@ -1,0 +1,31 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:five="http://namespaces.zope.org/five"
+     xmlns:gs="http://namespaces.zope.org/genericsetup">
+
+    <gs:registerProfile
+        name="default"
+        title="UI for CAS Login (Castle)"
+        directory="profiles/default"
+        description=""
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    />
+
+    <browser:page
+        for="*"
+        name="castle_login_url"
+        class=".browser.LoginUrl"
+        permission="zope2.Public"
+        />
+
+    <browser:page
+        for="*"
+        name="castle_logout"
+        class=".browser.Logout"
+        permission="zope2.Public"
+        />
+
+</configure>
