@@ -3,7 +3,8 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:five="http://namespaces.zope.org/five"
-     xmlns:gs="http://namespaces.zope.org/genericsetup">
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    xmlns:plone="http://namespaces.plone.org/plone">
 
     <gs:registerProfile
         name="default"
@@ -28,4 +29,13 @@
         permission="zope2.Public"
         />
 
+    <plone:portlet
+        name="collective.castle.portlet"
+        interface=".portlet.IPortlet"
+        assignment=".portlet.Assignment"
+        view_permission="zope2.View"
+        edit_permission="cmf.ManagePortal"
+        renderer=".portlet.Renderer"
+        addview=".portlet.AddForm"
+        />
 </configure>

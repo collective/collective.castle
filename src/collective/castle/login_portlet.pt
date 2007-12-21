@@ -1,0 +1,8 @@
+<div class="portlet">
+    <div class="portletHeader" >Log in</div>
+    <form action="" method="post" class="portletItem"
+          tal:attributes="action view/submit_url" >
+        <input type="submit" value="Log in"
+                tal:attributes="value view/submit_name" />
+    </form>
+</div>
