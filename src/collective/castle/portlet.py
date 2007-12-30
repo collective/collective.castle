@@ -19,7 +19,7 @@ class Renderer(base.Renderer):
     @property
     def submit_url(self):
         if self.is_logged_in():
-            return None # XXX TODO
+            return 'castle_logout'
         else:
             return util.login_URL(self.context)
 
