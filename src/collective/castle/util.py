@@ -1,6 +1,7 @@
 from Products.CMFCore.utils import getToolByName
 from zExceptions import NotFound
 from urllib import quote
+from Products.statusmessages.interfaces import IStatusMessage
 
 def URL(context):
     return context.restrictedTraverse('@@plone').getCurrentUrl()
@@ -34,5 +35,6 @@ def logout(context, request):
     #if request.has_key('portal_skin'):
     #    context.portal_skins.clearSkinCookie()
     #request.RESPONSE.expireCookie('__ac', path='/')
+    IStatusMessage(request).addStatusMessage(u'You are now logged out.', type='info') # XXX TODO: i18n the actual message
     portal = getToolByName(context, 'portal_url').getPortalObject().absolute_url()
     return request.RESPONSE.redirect(portal)
