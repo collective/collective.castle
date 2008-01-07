@@ -30,7 +30,7 @@
         />
 
     <plone:portlet
-        name="collective.castle.portlet"
+        name="collective.castle.Portlet"
         interface=".portlet.IPortlet"
         assignment=".portlet.Assignment"
         view_permission="zope2.View"
