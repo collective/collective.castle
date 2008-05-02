@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.1'
+version = '1.0'
 
 setup(name='collective.castle',
       version=version,
@@ -29,6 +29,7 @@ setup(name='collective.castle',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'Products.CAS4PAS',
       ],
       entry_points="""
       # -*- Entry points: -*-
