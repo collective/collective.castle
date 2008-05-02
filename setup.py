@@ -9,7 +9,7 @@ def read(*rnames):
 setup(name='collective.castle',
       version=version,
       description="Plone UI for CAS login.",
-      long_description=read('README.txt')
+      long_description=read('README.txt'),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
