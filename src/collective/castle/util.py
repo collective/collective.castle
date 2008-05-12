@@ -26,7 +26,9 @@ def login_query_string(context):
 def login_URL(context):
     base = login_URL_base(context)
     if base is None:
-        raise NotFound
+        request = context.request
+        IStatusMessage(request).addStatusMessage(u"CAS Login is not available. Please configure CAS ", type="warning")
+        return None
     return '%s%s' % (base, login_query_string(context))
 
 def logout(context, request):

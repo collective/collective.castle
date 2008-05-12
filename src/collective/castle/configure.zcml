@@ -8,27 +8,40 @@
 
     <gs:registerProfile
         name="default"
-        title="UI for CAS Login (Castle)"
+        title="Collective Castle (UI for CAS)"
         directory="profiles/default"
         description=""
         provides="Products.GenericSetup.interfaces.EXTENSION"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    />
-
+        />
+		
     <browser:page
         for="*"
         name="castle_login_url"
         class=".browser.LoginUrl"
         permission="zope2.Public"
         />
-
+		
     <browser:page
         for="*"
         name="castle_logout"
         class=".browser.Logout"
         permission="zope2.Public"
         />
-
+		
+    <adapter
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        factory=".control_panel.CASPluginFactory"
+        provides=".control_panel.ICAS4PASPluginSchema"
+        />
+    	
+    <browser:page
+    	for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    	name="cas_control_panel"
+    	class=".control_panel.CASControlPanel"
+    	permission="cmf.ManagePortal"
+    	/>
+    	
     <plone:portlet
         name="collective.castle.Portlet"
         interface=".portlet.IPortlet"
@@ -38,4 +51,5 @@
         renderer=".portlet.Renderer"
         addview=".portlet.AddForm"
         />
+    
 </configure>
