@@ -31,7 +31,7 @@
 		
     <adapter
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        factory=".control_panel.CASPluginFactory"
+        factory=".control_panel.CASSettingsAdapter"
         provides=".control_panel.ICAS4PASPluginSchema"
         />
     	
