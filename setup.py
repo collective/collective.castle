@@ -29,6 +29,7 @@ setup(name='collective.castle',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'rwproperty',
           'Products.CAS4PAS',
       ],
       entry_points="""
