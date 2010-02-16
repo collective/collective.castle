@@ -39,11 +39,11 @@
         />
 
     <browser:page
-    	for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    	name="cas_control_panel"
-    	class=".control_panel.CASControlPanel"
-    	permission="cmf.ManagePortal"
-    	/>
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="cas_control_panel"
+        class=".control_panel.CASControlPanel"
+        permission="cmf.ManagePortal"
+        />
 
     <plone:portlet
         name="collective.castle.Portlet"
