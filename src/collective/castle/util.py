@@ -43,12 +43,9 @@ def logout(context, request):
     p = get_cas_plugin(context)
     # forget user on logout
     mt.logoutUser(REQUEST=request)
-    if request.has_key('portal_skin'):
-        context.portal_skins.clearSkinCookie()
     session = request.SESSION
     if session.has_key(p.session_var):
         session[p.session_var] = None
-    request.RESPONSE.expireCookie('__ac', path='/')
     # let cas finnish the logout
     portal = quote(
         getToolByName(
