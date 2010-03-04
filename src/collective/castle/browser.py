@@ -1,6 +1,7 @@
 from zope.publisher.browser import BrowserPage
 from collective.castle import util
 
+
 class LoginUrl(BrowserPage):
 
     def __init__(self, context, request):
@@ -9,6 +10,7 @@ class LoginUrl(BrowserPage):
 
     def __call__(self):
         return util.login_URL(self.context)
+
 
 class Logout(BrowserPage):
 

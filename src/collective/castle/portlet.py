@@ -5,13 +5,16 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.castle import util
 from Products.CMFCore.utils import getToolByName
 
+
 class IPortlet(Interface):
     pass
+
 
 class Assignment(base.Assignment):
     implements(IPortlet)
 
     title = u'CAS Log in'
+
 
 class Renderer(base.Renderer):
     render = ViewPageTemplateFile('login_portlet.pt')
@@ -33,6 +36,7 @@ class Renderer(base.Renderer):
     def is_logged_in(self):
         mt = getToolByName(self.context, 'portal_membership')
         return not mt.isAnonymousUser()
+
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IPortlet)

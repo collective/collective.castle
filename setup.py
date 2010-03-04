@@ -1,11 +1,13 @@
+import os
 from setuptools import setup, find_packages
-import sys, os
 
 version = '1.0.1'
 
+
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
-    
+
+
 setup(name='collective.castle',
       version=version,
       description="Plone UI for CAS login.",
