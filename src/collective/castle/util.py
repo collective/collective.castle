@@ -20,7 +20,7 @@ def login_URL_base(context):
 def login_query_string(context):
     quoted_here_url = mtool = quote(URL(context), '')
     querystring = '?came_from=%s' % quoted_here_url
-    portal = URL(getToolByName(context, 'portal_url').getPortalObject())
+    portal = getToolByName(context, 'portal_url')()
     if portal[-1:] == '/':
         portal = portal[:-1]
     service_URL =('%s/logged_in%s' % (portal, querystring))
@@ -47,3 +47,4 @@ def logout(context, request):
         type='info') # XXX TODO: i18n the actual message
     portal = getToolByName(context, 'portal_url').getPortalObject().absolute_url()
     return request.RESPONSE.redirect(portal)
+
