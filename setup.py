@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-version = '1.0.1'
+version = '1.1'
 
 
 def read(*rnames):
@@ -19,8 +19,8 @@ setup(name='collective.castle',
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
       keywords='zope plone CAS PAS',
-      author='Derek Richardson',
-      author_email='plone@derekrichardson.net',
+      author='Derek Richardson/Plone Community',
+      author_email='product-developers@lists.plone.org',
       url='https://svn.plone.org/svn/collective/collective.castle',
       license='GPL',
       package_dir={'': 'src'},
@@ -36,5 +36,7 @@ setup(name='collective.castle',
       ],
       entry_points="""
       # -*- Entry points: -*-
+      [z3c.autoinclude.plugin]
+      target = plone
       """,
       )
