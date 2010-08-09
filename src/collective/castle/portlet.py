@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.interface import Interface, implements
 from zope.formlib import form
 from plone.app.portlets.portlets import base
