@@ -19,9 +19,22 @@ window, as this is CAS-enabled.
 
 Versions
 --------
-1.0 - Released May 2, 2008
+
+1.2 - 2010-08-09
+    
+    - Merge of the properlogout branch made by kiorky
+      [encolpe]
+
+1.1 - 2010-05-03
+
+    - First release since Derek disparition
+      [encolpe]
+
+1.0 - 2008-05-02
+
     - Initial release
       [derek_richardson]
+
       
 Credits
 -------
@@ -29,3 +42,6 @@ Thanks to the Georgia Institute of Technology for funding this product and
 allowing it to be released open-source. Thanks to regebro and others who
 developed CAS4PAS. Finally, thanks to Alexandre Sauve, the author of the 
 original PloneCASLogin who showed that this is possible.
+
+Quadra Informatique and Makina Corpus
+
