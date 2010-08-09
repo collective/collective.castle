@@ -24,8 +24,10 @@ Changelog
 
 1.2 - 2010-08-09
     
-    - Refactor login/logout methods. [kiorky]
-    - SECURITY FIX: ensure we are well loggued out from CAS and plone on logout from plone. [kiorky]
+    - Refactor login/logout methods.
+      [kiorky]
+    - SECURITY FIX: ensure we are well loggued out from CAS and plone on logout from plone.
+      [kiorky]
     - Merge of the properlogout branch made by kiorky
       [encolpe]
 
@@ -43,15 +45,23 @@ Changelog
 
 Credits
 ========
+
 Companies
 ---------
-- Quadra Informatique
+
+- |QuadraInformatique|_
+
+  * `Contact Quadra <mailto:plone@quadra-informatique.fr>`_
+
+
 - |makinacom|_
 
   * `Planet Makina Corpus <http://www.makina-corpus.org>`_
   * `Contact us <mailto:python@makina-corpus.org>`_
 
 
+.. |QuadraInformatique| image:: http://www.quadra-informatique.fr/logo.png
+.. _QuadraInformatique: http://www.quadra-informatique.fr/espace-clients/poles-dexpertises/xnet-zope-plone
 .. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif
 .. _makinacom:  http://www.makina-corpus.com
 
@@ -73,4 +83,3 @@ Contributors
 - Thanks to regebro and others who developed CAS4PAS.
 - Finally, thanks to Alexandre Sauve, the author of the original PloneCASLogin who showed that this is possible.
  
-      
