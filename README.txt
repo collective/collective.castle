@@ -19,29 +19,6 @@ You may, optionally, add the CAS Login portlet. Alternatively, you may simply
 let users log in using the 'Log in' link at the upper-right of the Plone
 window, as this is CAS-enabled.
 
-Changelog
-=============
-
-1.2 - 2010-08-09
-    
-    - Refactor login/logout methods.
-      [kiorky]
-    - SECURITY FIX: ensure we are well loggued out from CAS and plone on logout from plone.
-      [kiorky]
-    - Merge of the properlogout branch made by kiorky
-      [encolpe]
-
-1.1 - 2010-05-03
-
-    - First release since Derek disparition
-      [encolpe]
-
-1.0 - 2008-05-02
-
-    - Initial release
-      [derek_richardson]
-
-
 
 Credits
 ========
