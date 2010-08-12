@@ -1,5 +1,5 @@
 collective.castle
-====================
+=================
 
 .. contents::
 
@@ -7,10 +7,11 @@ collective.castle is a Plone 3.0 (and up) user interface for Products.CAS4PAS.
 CAS4PAS enables CAS-based authentication in Zope2 site containing PAS 
 (the Pluggable Authentication System). All Plone 3.0 sites contain PAS.
 
+
 Installation
-================
-To install, simply include the egg in your buildout (don't forget to hook up
-the zcml). Then, install CAS4PAS as a plugin as usual (see CAS4PAS 
+============
+To install, see docs/INSTALL.txt.
+Then, install CAS4PAS as a plugin as usual (see CAS4PAS
 documentation). Finally, install collective.castle from the Plone control
 panel. Your site is now CAS-enabled!
 
@@ -21,7 +22,7 @@ window, as this is CAS-enabled.
 
 
 Credits
-========
+=======
 
 Companies
 ---------
@@ -43,7 +44,7 @@ Companies
 .. _makinacom:  http://www.makina-corpus.com
 
 Authors
-------------
+-------
 
 - derek_richardson
 - encolpe
@@ -52,11 +53,9 @@ Authors
 - WouterVH
 - etc.
 
-
 Contributors
------------------
+------------
 
 - Thanks to the Georgia Institute of Technology for funding this product and allowing it to be released open-source. 
 - Thanks to regebro and others who developed CAS4PAS.
 - Finally, thanks to Alexandre Sauve, the author of the original PloneCASLogin who showed that this is possible.
- 
