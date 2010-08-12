@@ -3,7 +3,7 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:five="http://namespaces.zope.org/five"
-    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="collective.castle">
 
@@ -13,9 +13,9 @@
     <includeDependencies package="." />
 
 
-    <gs:registerProfile
+    <genericsetup:registerProfile
         name="default"
-        title="Collective Castle (UI for CAS)"
+        title="collective.castle"
         directory="profiles/default"
         description=""
         provides="Products.GenericSetup.interfaces.EXTENSION"
