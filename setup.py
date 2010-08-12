@@ -1,17 +1,22 @@
 import os
 from setuptools import setup, find_packages
 
-version = '1.2'
-
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
+version = '1.3dev'
+
+long_description = (
+    read('README.txt')
+    + '\n' +
+    read('CHANGES.txt')
+    )
 
 setup(name='collective.castle',
       version=version,
       description="Plone UI for CAS login.",
-      long_description=read('README.txt'),
+      long_description=long_description,
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
