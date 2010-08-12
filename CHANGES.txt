@@ -6,11 +6,13 @@ Changelog
 
 - Add CAS-icon to the control-panel. [WouterVH]
 
-- Cleanup package-docs according to current conventions. [WouterVH]
+- Add docs/INSTALL.txt  [WouterVH]
 
 - Add CHANGES.txt [WouterVH]
 
 - Add MANIFEST.in [WouterVH]
+
+- Standardize package-docs according to current conventions. [WouterVH]
 
 
 1.2 (2010-08-09)
