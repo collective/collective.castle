@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<action-icons xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+              i18n:domain="collective.castle">
+
+  <action-icon category="controlpanel"
+               action_id="cas"
+               title="CAS Configuration"
+               priority="0"
+               icon_expr="++resource++cas_icon.png"
+               i18n:attributes="title" />
+
+</action-icons>
+

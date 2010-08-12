@@ -9,6 +9,10 @@
 
     <five:registerPackage package="." initialize=".initialize" />
 
+    <!-- Include configuration for dependencies listed in setup.py -->
+    <includeDependencies package="." />
+
+
     <gs:registerProfile
         name="default"
         title="Collective Castle (UI for CAS)"
@@ -54,5 +58,7 @@
         renderer=".portlet.Renderer"
         addview=".portlet.AddForm"
         />
+
+    <browser:resource name="cas_icon.png" image="cas_icon.png" />
 
 </configure>

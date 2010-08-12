@@ -4,6 +4,8 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- Add CAS-icon to the control-panel. [WouterVH]
+
 - Cleanup package-docs according to current conventions. [WouterVH]
 
 - Add CHANGES.txt [WouterVH]
