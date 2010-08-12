@@ -8,6 +8,9 @@ Changelog
 
 - Add CHANGES.txt [WouterVH]
 
+- Add MANIFEST.in [WouterVH]
+
+
 1.2 (2010-08-09)
 -----------------
 
