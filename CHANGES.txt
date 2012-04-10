@@ -4,6 +4,8 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- Use navigation root rather than portal for the log out URL.
+  [davidjb]
 - Fix creation of CAS4PAS plugin when one doesn't exist on CAS control panel
   load.
   [davidjb]
