@@ -22,6 +22,16 @@
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         />
 
+    <genericsetup:upgradeStep
+        title="Display new control panel icon in Plone 4"
+        description=""
+        source="*"
+        destination="2"
+        handler="collective.castle.setuphandlers.upgrade_controlpanel"
+        sortkey="1"
+        profile="collective.castle:default"
+        />
+
     <browser:page
         for="*"
         name="castle_login_url"

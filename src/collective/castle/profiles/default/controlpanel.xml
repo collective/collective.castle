@@ -10,6 +10,7 @@
     category="Products"
     condition_expr=""
     url_expr="string:${portal_url}/@@cas_control_panel"
+    icon_expr="string:$portal_url/++resource++cas_icon.png"
     visible="True"
     i18n:attributes="title">
 

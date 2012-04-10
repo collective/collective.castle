@@ -4,6 +4,8 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- Ensure latest Plone versions display the CAS icon in the control panel.
+  [davidjb]
 - Fix AttributeError when looking up `context.request` if a CAS URL isn't
   configured and users are logged out.
   [davidjb]
