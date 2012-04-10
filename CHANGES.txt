@@ -4,6 +4,10 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- Fix creation of CAS4PAS plugin when one doesn't exist on CAS control panel
+  load.
+  [davidjb]
+
 - Rename the title of the GS-profile to the id of the package, which avoids
   confusion when similarly named packages exist. [WouterVH]
 

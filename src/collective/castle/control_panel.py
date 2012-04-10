@@ -66,8 +66,9 @@ class CASSettingsAdapter(object):
         acl_users = portal.acl_users
         cas_auth_helpers = acl_users.objectValues(['CAS Auth Helper'])
         if not cas_auth_helpers:
-            cas = acl_users.manage_addProduct['CAS4PAS']
-            cas.addCASAuthHelper('cas', 'CAS Auth Helper')
+            cas4pas = acl_users.manage_addProduct['CAS4PAS']
+            cas4pas.addCASAuthHelper('cas', 'CAS Auth Helper')
+            cas = acl_users['cas']
             cas.login_url = 'https://your.cas.server:port/cas/login'
             cas.logout_url = 'https://your.cas.server:port/cas/logout'
             cas.validate_url = 'https://your.cas.server:port/cas/validate'
@@ -76,7 +77,7 @@ class CASSettingsAdapter(object):
             out = StringIO()
             activatePluginInterfaces(portal, 'cas', out)
             msg = 'Created CAS plugin. %s' % out.getvalue()
-            IStatusMessage(context.request).addStatusMessage(msg, 'info')
+            IStatusMessage(context.REQUEST).addStatusMessage(msg, 'info')
         else:
             cas = cas_auth_helpers[0]
         self.cas = cas
