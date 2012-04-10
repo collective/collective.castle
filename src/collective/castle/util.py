@@ -22,7 +22,7 @@ def login_URL_base(context):
     if p:
         return p.getLoginURL()
 
-def login_query_string(context): 
+def login_query_string(context):
     quoted_here_url = mtool = quote(URL(context), '')
     querystring = '?came_from=%s' % quoted_here_url
     portal = getToolByName(context, 'portal_url')()
@@ -35,9 +35,9 @@ def login_query_string(context):
 def login_URL(context):
     base = login_URL_base(context)
     if base is None:
-        request = context.request
+        request = context.REQUEST
         IStatusMessage(request).addStatusMessage(
-            _(u"CAS Login is not available. Please configure CAS"), 
+            _(u"CAS Login is not available. Please configure CAS"),
             type="warning"
         )
         return None
@@ -49,11 +49,11 @@ def logout(context, request):
     p = get_cas_plugin(context)
     # forget user on logout
     mt.logoutUser(REQUEST=request)
-    
+
     #if request.has_key('portal_skin'):
     #    context.portal_skins.clearSkinCookie()
     #request.RESPONSE.expireCookie('__ac', path='/')
-    
+
     session = request.SESSION
     if session.has_key(p.session_var):
         session[p.session_var] = None
@@ -64,9 +64,9 @@ def logout(context, request):
         ).getPortalObject().absolute_url()
     )
     IStatusMessage(request).addStatusMessage(
-        _(u'You are now logged out.'), 
+        _(u'You are now logged out.'),
         type='info'
-    ) 
-    return request.RESPONSE.redirect( 
+    )
+    return request.RESPONSE.redirect(
         '%s?url=%s' % (p.logout_url, portal)
     )
