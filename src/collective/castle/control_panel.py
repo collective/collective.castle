@@ -133,6 +133,11 @@ class CASControlPanel(FieldsetsEditForm):
     description = _(u"CAS settings for this site.")
     form_name = _(u"CAS settings")
 
+    def setUpWidgets(self, ignore_request=False):
+        super(CASControlPanel, self).setUpWidgets(ignore_request)
+        for field in ('login_url', 'logout_url', 'validate_url'):
+            self.widgets[field].displayWidth = 60
+
     @form.action(_(u"Save"))
     def save(self, action, data):
         if form.applyChanges(self.context,
