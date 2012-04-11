@@ -31,22 +31,22 @@ class ICAS4PASPluginSchema(Interface):
 
     login_url = TextLine(
         title=_(u"CAS Log in URL"),
-        description=_(u""),
+        description=_(u"The absolute URL for CAS log in."),
         required=True)
 
     logout_url = TextLine(
         title=_(u"CAS Log out URL"),
-        description=_(u""),
+        description=_(u"The absolute URL for CAS log out."),
         required=True)
 
     validate_url = TextLine(
         title=_(u"CAS Validate URL"),
-        description=_(u""),
+        description=_(u"The absolute URL for CAS validation."),
         required=True)
 
     session_var = TextLine(
         title=_(u"Session Variable"),
-        description=_(u""),
+        description=_(u"The identifier for the session cookie in use."),
         required=True)
 
     use_ACTUAL_URL = Bool(
