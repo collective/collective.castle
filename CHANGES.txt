@@ -4,6 +4,8 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- Control panel cancel button now redirects to overview.
+  [davidjb]
 - Added descriptions to control panel fields.
   [davidjb]
 - Lengthen the input fields on the CAS control panel page for ease of entry.

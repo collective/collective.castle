@@ -150,5 +150,6 @@ class CASControlPanel(FieldsetsEditForm):
 
     @form.action(_(u"Cancel"))
     def cancel(self, action, data):
-        pass
-        # TODO: redirect to plone control panel
+        IStatusMessage(self.request).add(_(u"Changes canceled."))
+        portalUrl = getToolByName(self.context, 'portal_url')()
+        self.request.response.redirect("%s/plone_control_panel" % portalUrl)
