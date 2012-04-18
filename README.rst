@@ -51,6 +51,7 @@ Authors
 - kiorky
 - batlock666
 - WouterVH
+- davidjb
 - etc.
 
 Contributors
