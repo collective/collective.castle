@@ -3,5 +3,5 @@
   <description>
     Installs Plone UI for CAS authentication support through Products.CAS4PAS.
   </description>
-  <version>2</version>
+  <version>3</version>
 </metadata>

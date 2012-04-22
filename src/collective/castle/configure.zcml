@@ -32,6 +32,16 @@
         profile="collective.castle:default"
         />
 
+    <genericsetup:upgradeStep
+        title="Reconfigure portal_actions to not override Plone defaults"
+        description=""
+        source="*"
+        destination="3"
+        handler="collective.castle.setuphandlers.upgrade_actions"
+        sortkey="1"
+        profile="collective.castle:default"
+        />
+
     <browser:page
         for="*"
         name="castle_login_url"

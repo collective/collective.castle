@@ -4,7 +4,12 @@
 
  <object name="user" meta_type="CMF Action Category">
 
-  <object name="login" meta_type="CMF Action" i18n:domain="plone">
+  <object name="login">
+   <property name="visible">False</property>
+  </object>
+
+  <object name="castle_login" meta_type="CMF Action" i18n:domain="plone"
+   insert-after="login">
    <property name="title" i18n:translate="">CAS Log in</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:${here/castle_login_url}</property>
@@ -15,7 +20,13 @@
    </property>
    <property name="visible">True</property>
   </object>
-  <object name="logout" meta_type="CMF Action" i18n:domain="plone">
+
+  <object name="logout">
+   <property name="visible">False</property>
+  </object>
+
+  <object name="castle_logout" meta_type="CMF Action" i18n:domain="plone"
+   insert-after="logout">
    <property name="title" i18n:translate="">CAS Log out</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:${globals_view/navigationRootUrl}/castle_logout</property>
@@ -26,5 +37,6 @@
    </property>
    <property name="visible">True</property>
   </object>
+
  </object>
 </object>

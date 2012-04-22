@@ -11,3 +11,6 @@ def run_import_step(context, step):
 
 def upgrade_controlpanel(context):
     run_import_step(context, 'controlpanel')
+
+def upgrade_actions(context):
+    run_import_step(context, 'actions')
