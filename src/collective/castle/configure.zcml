@@ -12,7 +12,6 @@
     <!-- Include configuration for dependencies listed in setup.py -->
     <includeDependencies package="." />
 
-
     <genericsetup:registerProfile
         name="default"
         title="collective.castle"
@@ -42,6 +41,16 @@
         profile="collective.castle:default"
         />
 
+    <genericsetup:upgradeStep
+        title="Change collective.castle to use plone.app.registry"
+        description=""
+        source="*"
+        destination="4"
+        handler="collective.castle.setuphandlers.upgrade_to_plone_app_registry"
+        sortkey="1"
+        profile="collective.castle:default"
+        />
+
     <browser:page
         for="*"
         name="castle_login_url"
@@ -56,16 +65,10 @@
         permission="zope2.Public"
         />
 
-    <adapter
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        factory=".control_panel.CASSettingsAdapter"
-        provides=".control_panel.ICAS4PASPluginSchema"
-        />
-
     <browser:page
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         name="cas_control_panel"
-        class=".control_panel.CASControlPanel"
+        class=".control_panel.CASSettingsControlPanel"
         permission="cmf.ManagePortal"
         />
 
@@ -80,5 +83,10 @@
         />
 
     <browser:resource name="cas_icon.png" image="cas_icon.png" />
+
+    <subscriber
+        for=".interfaces.ICAS4PASPluginSchema
+             plone.registry.interfaces.IRecordModifiedEvent"
+        handler=".control_panel.updateCASSettings" />
 
 </configure>

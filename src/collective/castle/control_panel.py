@@ -1,155 +1,55 @@
 # -*- coding: utf-8 -*-
 from StringIO import StringIO
 
-from zope.interface import Interface
-from zope.interface import implements
-
-from zope.component import adapts
-
-from zope.schema import TextLine
-from zope.schema import Bool
-
-from zope.formlib import form
-
-from Products.CMFCore.utils import getToolByName
+from zope.component import adapter
+from zope.schema import getFields
+from zope.app.component.hooks import getSite
 
 from Products.CMFPlone import PloneMessageFactory as _
-from Products.CMFPlone.interfaces import IPloneSiteRoot
-
 from Products.PlonePAS.Extensions.Install import activatePluginInterfaces
-
-from plone.fieldsets.form import FieldsetsEditForm
-from plone.app.controlpanel.interfaces import IPloneControlPanelForm
-
 from Products.statusmessages.interfaces import IStatusMessage
 
-from rwproperty import getproperty
-from rwproperty import setproperty
+from plone.app.registry.browser import controlpanel
+from plone.registry.interfaces import IRecordModifiedEvent
+
+from collective.castle.interfaces import ICAS4PASPluginSchema
 
 
-class ICAS4PASPluginSchema(Interface):
+@adapter(ICAS4PASPluginSchema, IRecordModifiedEvent)
+def updateCASSettings(settings, event):
+    portal = getSite()
+    acl_users = portal.acl_users
+    cas_auth_helpers = acl_users.objectValues(['CAS Auth Helper'])
+    if not cas_auth_helpers:
+        cas4pas = acl_users.manage_addProduct['CAS4PAS']
+        cas4pas.addCASAuthHelper('cas', 'CAS Auth Helper')
+        cas = acl_users['cas']
 
-    login_url = TextLine(
-        title=_(u"CAS Log in URL"),
-        description=_(u"The absolute URL for CAS log in."),
-        required=True)
+        #Load defaults from fields
+        fields = getFields(ICAS4PASPluginSchema)
+        for field in fields:
+            setattr(cas, field, fields[field].default)
 
-    logout_url = TextLine(
-        title=_(u"CAS Log out URL"),
-        description=_(u"The absolute URL for CAS log out."),
-        required=True)
+        out = StringIO()
+        activatePluginInterfaces(portal, 'cas', out)
+        msg = 'Created CAS plugin. %s' % out.getvalue()
+        IStatusMessage(portal.REQUEST).addStatusMessage(msg, 'info')
+    else:
+        cas = cas_auth_helpers[0]
 
-    validate_url = TextLine(
-        title=_(u"CAS Validate URL"),
-        description=_(u"The absolute URL for CAS validation."),
-        required=True)
+    #Proxy the changed value to the CAS4PAS helper
+    setattr(cas, event.record.fieldName, event.newValue)
 
-    session_var = TextLine(
-        title=_(u"Session Variable"),
-        description=_(u"The identifier for the session cookie in use."),
-        required=True)
+class CASSettingsEditForm(controlpanel.RegistryEditForm):
 
-    use_ACTUAL_URL = Bool(
-        title=_(u"Use Actual URL"),
-        description=_(u""),
-        required=True)
-
-
-class CASSettingsAdapter(object):
-
-    implements(ICAS4PASPluginSchema)
-    adapts(IPloneSiteRoot)
-
-    def __init__(self, context):
-        url_tool = getToolByName(context, 'portal_url')
-        portal = url_tool.getPortalObject()
-        acl_users = portal.acl_users
-        cas_auth_helpers = acl_users.objectValues(['CAS Auth Helper'])
-        if not cas_auth_helpers:
-            cas4pas = acl_users.manage_addProduct['CAS4PAS']
-            cas4pas.addCASAuthHelper('cas', 'CAS Auth Helper')
-            cas = acl_users['cas']
-            cas.login_url = 'https://your.cas.server:port/cas/login'
-            cas.logout_url = 'https://your.cas.server:port/cas/logout'
-            cas.validate_url = 'https://your.cas.server:port/cas/validate'
-            cas.session_var = '__ac'
-            cas.use_ACTUAL_URL = True
-            out = StringIO()
-            activatePluginInterfaces(portal, 'cas', out)
-            msg = 'Created CAS plugin. %s' % out.getvalue()
-            IStatusMessage(context.REQUEST).addStatusMessage(msg, 'info')
-        else:
-            cas = cas_auth_helpers[0]
-        self.cas = cas
-
-    @getproperty
-    def login_url(self):
-        return self.cas.login_url
-
-    @setproperty
-    def login_url(self, login_url):
-        self.cas.login_url = login_url
-
-    @getproperty
-    def logout_url(self):
-        return self.cas.logout_url
-
-    @setproperty
-    def logout_url(self, logout_url):
-        self.cas.logout_url = logout_url
-
-    @getproperty
-    def validate_url(self):
-        return self.cas.validate_url
-
-    @setproperty
-    def validate_url(self, validate_url):
-        self.cas.validate_url = validate_url
-
-    @getproperty
-    def session_var(self):
-        return self.cas.session_var
-
-    @setproperty
-    def session_var(self, session_var):
-        self.cas.session_var = session_var
-
-    @getproperty
-    def use_ACTUAL_URL(self):
-        return self.cas.use_ACTUAL_URL
-
-    @setproperty
-    def use_ACTUAL_URL(self, use_ACTUAL_URL):
-        self.cas.use_ACTUAL_URL = use_ACTUAL_URL
-
-
-class CASControlPanel(FieldsetsEditForm):
-
-    implements(IPloneControlPanelForm)
-
-    form_fields = form.FormFields(ICAS4PASPluginSchema)
-
+    schema = ICAS4PASPluginSchema
     label = _(u"CAS settings")
     description = _(u"CAS settings for this site.")
-    form_name = _(u"CAS settings")
 
-    def setUpWidgets(self, ignore_request=False):
-        super(CASControlPanel, self).setUpWidgets(ignore_request)
+    def updateWidgets(self):
+        super(CASSettingsEditForm, self).updateWidgets()
         for field in ('login_url', 'logout_url', 'validate_url'):
             self.widgets[field].displayWidth = 60
 
-    @form.action(_(u"Save"))
-    def save(self, action, data):
-        if form.applyChanges(self.context,
-                self.form_fields,
-                data,
-                self.adapters):
-            self.status = _(u"Changes saved.")
-        else:
-            self.status = _(u"No changes made.")
-
-    @form.action(_(u"Cancel"))
-    def cancel(self, action, data):
-        IStatusMessage(self.request).add(_(u"Changes canceled."))
-        portalUrl = getToolByName(self.context, 'portal_url')()
-        self.request.response.redirect("%s/plone_control_panel" % portalUrl)
+class CASSettingsControlPanel(controlpanel.ControlPanelFormWrapper):
+    form = CASSettingsEditForm

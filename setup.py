@@ -38,7 +38,13 @@ setup(name='collective.castle',
           # -*- Extra requirements: -*-
           'rwproperty',
           'Products.CAS4PAS',
+          'plone.app.registry',
       ],
+      extras_require = {
+          'test': [
+              'plone.app.testing',
+          ]
+      },
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]

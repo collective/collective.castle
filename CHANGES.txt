@@ -4,6 +4,13 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- Added initial unit tests for configuration. 
+  [davidjb]
+- Changed to use plone.app.registry for configuration. This reduces control
+  panel complexity greatly and allows GenericSetup import and export of
+  values from plone.app.registry. This change requires collective.castle to
+  be upgraded in the Add-ons control panel.
+  [davidjb]
 - Redefine portal_actions items to not override Plone's original login and
   logout actions but create new actions. This satisfies the use-case of 
   potentially using Plone's original actions in cases of multiple souces of
