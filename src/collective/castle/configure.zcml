@@ -51,6 +51,18 @@
         profile="collective.castle:default"
         />
 
+    <genericsetup:upgradeStep
+        title="Update plone.app.registry"
+        description=""
+        source="*"
+        destination="5"
+        handler="collective.castle.setuphandlers.upgrade_registry"
+        sortkey="1"
+        profile="collective.castle:default"
+        />
+
+
+
     <browser:page
         for="*"
         name="castle_login_url"

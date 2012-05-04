@@ -35,3 +35,12 @@ class ICAS4PASPluginSchema(Interface):
         description=_(u""),
         required=True)
 
+    users_require_role = schema.Bool(
+        title=_(u"Users Require Role"),
+        description=_(u"If enabled, users require a role on the portal"
+                      u" in order to be authenticated. If disabled, all users"
+                      u" authenticating via CAS are allowed."),
+        default=False,
+        required=True)
+
+

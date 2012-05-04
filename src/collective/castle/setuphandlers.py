@@ -21,8 +21,11 @@ def upgrade_controlpanel(context):
 def upgrade_actions(context):
     run_import_step(context, 'actions')
 
-def upgrade_to_plone_app_registry(context):
+def upgrade_registry(context):
     run_import_step(context, 'plone.app.registry')
+
+def upgrade_to_plone_app_registry(context):
+    upgrade_registry(context)
 
     #Configure settings by loading values from CAS plugin
     acl_users = getToolByName(context, 'acl_users')
