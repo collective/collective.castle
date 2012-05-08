@@ -27,10 +27,10 @@ collective.castle uses plone.app.registry for maintaining values and as such,
 GenericSetup can be used to import and export configuration. When values change
 within settings in the registry, an event is fired such that the CAS4PAS plugin
 and its settings are updated accordingly. For this reason, only modify 
-settings on your CAS plugin  
+settings on your CAS plugin. 
 
 Example GenericSetup import configuration
-----------------------------
+-----------------------------------------
 
 One GenericSetup import configuration profile looks like so within a
 `profiles/default/registry.xml` (or similar) file::
