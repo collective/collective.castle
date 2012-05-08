@@ -61,7 +61,23 @@ collective.castle as a dependency in its `metadata.xml`::
      </dependencies>
     </metadata>
 
-    
+Restricting user logins
+-----------------------
+
+By default, `collective.castle` allows any user that can authenticate to your
+CAS server access to your portal. This may not always be suitable and 
+an option is available to prevent authentication unless the user has a 
+pre-determined role within your portal.
+
+To enable this option, load the `CAS Configuration` control panel, and 
+enable the `Users Require Role` option. This will now require any users
+logging in via CAS to have some form of portal role associated with their
+user account (aside from `Anonymous`) or else Plone will reject their 
+authentication.
+
+This implies that users accounts must be enumerable from some PAS plugin;
+they could be created manually within Plone (`source_users`), provided from
+another source such as LDAP or AD, or any other way you envisage.
 
 Credits
 =======

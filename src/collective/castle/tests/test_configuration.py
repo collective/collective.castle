@@ -4,6 +4,7 @@ from zope.component import getMultiAdapter, getUtility
 from zope.schema import getFieldNames
 
 from plone.registry.interfaces import IRegistry, IRecordsProxy
+from plone.app.testing import TEST_USER_ID, setRoles
 
 from collective.castle.control_panel import ICAS4PASPluginSchema
 from collective.castle.testing import COLLECTIVE_CASTLE_INTEGRATION_TESTING
@@ -52,5 +53,41 @@ class IntegrationTest(unittest.TestCase):
 
         cas = self.portal.acl_users.cas
         for field in getFieldNames(ICAS4PASPluginSchema):
-            self.assertEqual(getattr(cas, field), getattr(record, field))
+            if hasattr(cas, field):
+                self.assertEqual(getattr(cas, field), getattr(record, field))
 
+    def test_non_plugin_fields(self):
+        """Test CAS4PAS plugin doesn't receive values specific to castle."""
+        record = getUtility(IRegistry).forInterface(ICAS4PASPluginSchema)
+        record.users_require_role = True
+
+        cas = self.portal.acl_users.cas
+        self.assertFalse(hasattr(cas, 'users_require_role'))
+
+    def test_monkey_patch(self):
+        from Products.CAS4PAS.CASAuthHelper import CASAuthHelper
+        self.assertIn('Monkey patch',
+                      CASAuthHelper.authenticateCredentials.__doc__)
+        self.assertTrue(hasattr(CASAuthHelper, '_old_authenticateCredentials'))
+
+    def test_users_require_role(self):
+        """Test CAS4PAS monkey patch requiring users to have a role to auth."""
+        record = getUtility(IRegistry).forInterface(ICAS4PASPluginSchema)
+        record.users_require_role = True
+
+        cas = self.portal.acl_users.cas
+        credentials = {'source': 'plone.session',
+                       'login': TEST_USER_ID,
+                       'extractor': 'cas'}
+
+        #User has no access with no roles or Anonymous only
+        for roles in ([], ['Anonymous']):
+            setRoles(self.portal, TEST_USER_ID, roles)
+            self.assertEqual(cas.authenticateCredentials(credentials),
+                             (None, None))
+
+        #User now has access with any other role
+        for roles in ('Member', 'Contributor', 'Editor', 'Reader', 'Reviewer'):
+            setRoles(self.portal, TEST_USER_ID, roles)
+            self.assertEqual(cas.authenticateCredentials(credentials),
+                             (TEST_USER_ID, TEST_USER_ID))

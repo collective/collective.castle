@@ -39,6 +39,7 @@ setup(name='collective.castle',
           'rwproperty',
           'Products.CAS4PAS',
           'plone.app.registry',
+          'collective.monkeypatcher',
       ],
       extras_require = {
           'test': [
