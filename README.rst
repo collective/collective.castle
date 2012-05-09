@@ -79,6 +79,15 @@ This implies that users accounts must be enumerable from some PAS plugin;
 they could be created manually within Plone (`source_users`), provided from
 another source such as LDAP or AD, or any other way you envisage.
 
+Recreating CAS plugin
+---------------------
+
+If for some reason your CAS plugin is accidentally removed, or otherwise needs
+repair, you can easily recreate it using the `Recreate Plugin` button on the
+`CAS Configuration` control panel form.  This will remove an existing CAS
+plugin (if present), and create a new one using the given settings.
+
+
 Credits
 =======
 

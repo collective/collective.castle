@@ -1,6 +1,6 @@
 import unittest2 as unittest
 
-from zope.component import getMultiAdapter, getUtility
+from zope.component import getUtility
 from zope.schema import getFieldNames
 
 from plone.registry.interfaces import IRegistry, IRecordsProxy
@@ -16,20 +16,6 @@ class IntegrationTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-
-    def test_controlpanel_view(self):
-        view = getMultiAdapter((self.portal, self.portal.REQUEST),
-                               name='cas_control_panel')
-        view = view.__of__(self.portal)
-        self.failUnless(view())
-
-    def test_controlpanel_view_protected(self):
-        from AccessControl import Unauthorized
-        from plone.app.testing import logout
-        logout()
-        self.assertRaises(Unauthorized,
-                          self.portal.restrictedTraverse,
-                          '@@cas_control_panel')
 
     def test_records_proxy(self):
         record = getUtility(IRegistry).forInterface(ICAS4PASPluginSchema)
