@@ -3,17 +3,23 @@ collective.castle
 
 .. contents::
 
-collective.castle is a Plone 3.0 (and up) user interface for Products.CAS4PAS. 
+collective.castle is a Plone user interface for Products.CAS4PAS. 
 CAS4PAS enables CAS-based authentication in Zope2 site containing PAS 
 (the Pluggable Authentication System). All Plone 3.0 sites contain PAS.
 
 
 Installation
 ============
-To install, see docs/INSTALL.txt.
-Then, install CAS4PAS as a plugin as usual (see CAS4PAS
-documentation). Finally, install collective.castle from the Plone control
-panel. Your site is now CAS-enabled!
+
+This addon can be installed as any other Plone addons. Please follow the
+official documentation_.
+
+.. _documentation: http://plone.org/documentation/kb/installing-add-ons-quick-how-to
+
+Then, install CAS4PAS as a PAS plugin (see CAS4PAS documentation).
+
+Check the controlpanel the /@@cas_control_panel configuration and voila, 
+your site is now CAS-enabled!
 
 You should remove the stock Plone login portlet so as not to confuse users.
 You may, optionally, add the CAS Login portlet. Alternatively, you may simply
@@ -48,7 +54,7 @@ One GenericSetup import configuration profile looks like so within a
       <record field="validate_url" interface="collective.castle.interfaces.ICAS4PASPluginSchema" name="collective.castle.interfaces.ICAS4PASPluginSchema.validate_url">
         <value>https://cas.secure.localhost/cas/validate</value>
       </record>
-    </registry>    
+    </registry>
 
 which can be placed into a policy product or similar for configuration. If 
 doing so, ensure the given product's generic setup profile specifies 

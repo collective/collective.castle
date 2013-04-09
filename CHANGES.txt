@@ -4,6 +4,8 @@ Changelog
 1.3 (unreleased)
 ----------------
 
+- fix getSite import for Zope 2.13
+  [toutpt]
 - Added option to prevent login unless user has some role on the portal.
   This effectively requires some user enumeration source to be present.
   This option is disabled by default.
