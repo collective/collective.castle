@@ -3,7 +3,10 @@ from StringIO import StringIO
 
 from zope.component import adapter, getUtility
 from zope.schema import getFields
-from zope.app.component.hooks import getSite
+try:
+    from zope.component.hooks import getSite
+except ImportError:
+    from zope.app.component.hooks import getSite
 from z3c.form import button, form
 
 from Products.CMFCore.utils import getToolByName
