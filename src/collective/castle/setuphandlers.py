@@ -21,6 +21,9 @@ def upgrade_controlpanel(context):
 def upgrade_actions(context):
     run_import_step(context, 'actions')
 
+def upgrade_skins(context):
+    run_import_step(context, 'skins')
+
 def upgrade_registry(context):
     run_import_step(context, 'plone.app.registry')
 
@@ -42,8 +45,3 @@ def upgrade_to_plone_app_registry(context):
                 #Convert old strings to unicode
                 old_value = unicode(old_value)
             setattr(settings, key, old_value)
-
-
-
-
-

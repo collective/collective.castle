@@ -3,7 +3,7 @@
   <description>
     Installs Plone UI for CAS authentication support through Products.CAS4PAS.
   </description>
-  <version>5</version>
+  <version>6</version>
   <dependencies>
     <dependency>profile-plone.app.registry:default</dependency>
  </dependencies>
