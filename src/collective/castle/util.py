@@ -68,5 +68,5 @@ def logout(context, request):
         type='info'
     )
     return request.RESPONSE.redirect(
-        '%s?url=%s' % (p.logout_url, portal)
+        '%s?service=%s' % (p.logout_url, portal)
     )
