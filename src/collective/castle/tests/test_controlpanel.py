@@ -31,7 +31,7 @@ class IntegrationTest(unittest.TestCase):
 
     def test_createplugin(self):
         from plone.app.testing import TEST_USER_ID, TEST_USER_NAME, \
-                TEST_USER_PASSWORD
+            TEST_USER_PASSWORD
         from plone.app.testing import setRoles, login
 
         login(self.portal, TEST_USER_NAME)
@@ -61,6 +61,3 @@ class IntegrationTest(unittest.TestCase):
         #Should be the default URL, not dummy
         self.assertEqual(self.portal.acl_users.cas.login_url,
                          'https://your.cas.server:port/cas/login')
-
-
-

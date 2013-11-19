@@ -54,6 +54,7 @@ def getCASPlugin():
 
     return cas
 
+
 @adapter(ICAS4PASPluginSchema, IRecordModifiedEvent)
 def updateCASSettings(settings, event):
     """Update CAS settings when settings are changed in control panel."""
@@ -63,6 +64,7 @@ def updateCASSettings(settings, event):
     if hasattr(CASAuthHelper, fieldName):
         #Proxy the changed value to the CAS4PAS helper if applicable
         setattr(cas, fieldName, event.newValue)
+
 
 class CASSettingsEditForm(controlpanel.RegistryEditForm):
     form.extends(controlpanel.RegistryEditForm)
@@ -86,6 +88,7 @@ class CASSettingsEditForm(controlpanel.RegistryEditForm):
         if not result:
             msg = 'Could not create CAS plugin.'
             IStatusMessage(self.request).addStatusMessage(msg, 'error')
+
 
 class CASSettingsControlPanel(controlpanel.ControlPanelFormWrapper):
     form = CASSettingsEditForm

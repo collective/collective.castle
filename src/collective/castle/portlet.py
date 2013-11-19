@@ -30,9 +30,9 @@ class Renderer(base.Renderer):
     @property
     def submit_name(self):
         if self.is_logged_in():
-            return u'CAS Log out' # XXX TODO: i18n
+            return u'CAS Log out'  # XXX TODO: i18n
         else:
-            return u'CAS Log in' # XXX TODO: i18n
+            return u'CAS Log in'  # XXX TODO: i18n
 
     def is_logged_in(self):
         mt = getToolByName(self.context, 'portal_membership')

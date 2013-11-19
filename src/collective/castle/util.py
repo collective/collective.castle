@@ -17,18 +17,20 @@ def get_cas_plugin(context):
     if cas_auth_helpers:
         return cas_auth_helpers[0]
 
+
 def login_URL_base(context):
     p = get_cas_plugin(context)
     if p:
         return p.getLoginURL()
 
+
 def login_query_string(context):
-    quoted_here_url = mtool = quote(URL(context), '')
+    quoted_here_url = quote(URL(context), '')
     querystring = '?came_from=%s' % quoted_here_url
     portal = getToolByName(context, 'portal_url')()
     if portal[-1:] == '/':
         portal = portal[:-1]
-    service_URL =('%s/logged_in%s' % (portal, querystring))
+    service_URL = ('%s/logged_in%s' % (portal, querystring))
     return '?service=%s' % quote(service_URL, '')
 
 
@@ -55,7 +57,7 @@ def logout(context, request):
     #request.RESPONSE.expireCookie('__ac', path='/')
 
     session = request.SESSION
-    if session.has_key(p.session_var):
+    if p.session_var in session:
         session[p.session_var] = None
     # let cas finnish the logout
     portal = quote(

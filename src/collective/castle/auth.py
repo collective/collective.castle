@@ -34,5 +34,3 @@ def authenticateCredentials(self, credentials):
                 result = (None, None)
 
     return result
-
-

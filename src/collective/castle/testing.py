@@ -26,5 +26,3 @@ COLLECTIVE_CASTLE_INTEGRATION_TESTING = IntegrationTesting(
     bases=(COLLECTIVE_CASTLE_FIXTURE,),
     name="collective.castle:Integration"
 )
-
-

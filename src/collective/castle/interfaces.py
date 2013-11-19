@@ -42,5 +42,3 @@ class ICAS4PASPluginSchema(Interface):
                       u" authenticating via CAS are allowed."),
         default=False,
         required=True)
-
-
