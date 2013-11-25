@@ -57,7 +57,7 @@ def logout(context, request):
     #request.RESPONSE.expireCookie('__ac', path='/')
 
     session = request.SESSION
-    if p.session_var in session:
+    if p.session_var in session.keys():
         session[p.session_var] = None
     # let cas finnish the logout
     portal = quote(
