@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from zope.interface import Interface, implements
-from zope.formlib import form
 from plone.app.portlets.portlets import base
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.castle import util
@@ -40,7 +39,7 @@ class Renderer(base.Renderer):
 
 
 class AddForm(base.AddForm):
-    form_fields = form.Fields(IPortlet)
+    schema = IPortlet
 
     def create(self, data):
         return Assignment()
