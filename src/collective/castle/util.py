@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from Products.CMFCore.utils import getToolByName
-from urllib import quote
+from urllib import quote, unquote
 from Products.statusmessages.interfaces import IStatusMessage
 
 from collective.castle import CastleMessageFactory as _
@@ -25,15 +25,15 @@ def login_URL_base(context):
 
 
 def login_query_string(context):
-    quoted_here_url = quote(URL(context), '')
+    quoted_here_url = quote(unquote(URL(context)), '')
+    portal = getToolByName(context, 'portal_url')()
+    if portal[-1:] == '/':
+        portal = portal[:-1]
     # retrieve correct came_from from url
     splitted = quoted_here_url.split('came_from%3D')
     if len(splitted) > 1:
         quoted_here_url = splitted[-1]
     querystring = '?came_from=%s' % quoted_here_url
-    portal = getToolByName(context, 'portal_url')()
-    if portal[-1:] == '/':
-        portal = portal[:-1]
     service_URL = ('%s/logged_in%s' % (portal, querystring))
     return '?service=%s' % quote(service_URL, '')
 
