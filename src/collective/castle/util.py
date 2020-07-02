@@ -26,6 +26,10 @@ def login_URL_base(context):
 
 def login_query_string(context):
     quoted_here_url = quote(URL(context), '')
+    # retrieve correct came_from from url
+    splitted = quoted_here_url.split('came_from%3D')
+    if len(splitted) > 1:
+        quoted_here_url = splitted[-1]
     querystring = '?came_from=%s' % quoted_here_url
     portal = getToolByName(context, 'portal_url')()
     if portal[-1:] == '/':
